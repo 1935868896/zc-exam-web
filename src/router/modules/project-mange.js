@@ -11,22 +11,44 @@ const tableRouter = {
   },
   children: [
     {
-      path: 'book-info-table',
-      component: () => import('@/views/project-mange/book-info'),
-      name: '图书信息2',
-      meta: { title: '图书信息' }
+      path: 't-subject',
+      component: () => import('@/views/project-mange/t-subject'),
+      name: 't-subject',
+      meta: { title: '年级管理' }
     },
     {
-      path: 'complex-table',
-      component: () => import('@/views/project-mange/template'),
-      name: 'template',
-      meta: { title: '模板' }
+      path: 't-question',
+      component: () => import('@/views/project-mange/t-question'),
+      name: 't-question',
+      meta: { title: '问题管理' }
     },
     {
-      path: 'pms-brand',
-      component: () => import('@/views/project-mange/pms-brand'),
-      name: 'pms-brand',
-      meta: { title: '品牌管理' }
+      path: 't-exam-paper',
+      component: () => import('@/views/project-mange/t-exam-paper'),
+      name: 't-exam-paper',
+      meta: { title: '试卷管理' }
+    },
+
+    {
+      path: 'single-choice',
+      hidden: true,
+      component: () => import('@/views/project-mange/question/single-choice'),
+      name: 'single-choice',
+      meta: { title: '单项选择' }
+    },
+    {
+      path: 'multiple-choice',
+      hidden: true,
+      component: () => import('@/views/project-mange/question/multiple-choice'),
+      name: 'multiple-choice',
+      meta: { title: '多项选择' }
+    },
+    {
+      path: 'paper-edit',
+      hidden: true,
+      component: () => import('@/views/project-mange/paper/edit'),
+      name: 'paper-edit',
+      meta: { title: '添加试卷' }
     }
   ]
 }
