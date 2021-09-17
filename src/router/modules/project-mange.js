@@ -49,6 +49,13 @@ const tableRouter = {
       meta: { title: '多项选择' }
     },
     {
+      path: 'true-false',
+      hidden: true,
+      component: () => import('@/views/project-mange/question/true-false'),
+      name: 'true-false',
+      meta: { title: '判断题' }
+    },
+    {
       path: 'paper-edit',
       hidden: true,
       component: () => import('@/views/project-mange/paper/edit'),

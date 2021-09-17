@@ -156,6 +156,11 @@
           多选题
         </router-link>
       </el-button>
+      <el-button type="primary" style="marign:8">
+        <router-link :to="'/project-mange/true-false'">
+          判断题
+        </router-link>
+      </el-button>
     </el-dialog>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
