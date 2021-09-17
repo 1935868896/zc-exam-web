@@ -58,14 +58,14 @@
 <script>
 import store from '@/store'
 import { getList } from '@/api/project-mange/t-subject'
-import { create } from '@/api/project-mange/t-question'
+import { create, fetchQuestionDetail } from '@/api/project-mange/t-question'
 export default {
 
   data() {
     return {
       form: {
         id: null,
-        questionType: 1,
+        questionType: 2,
         gradeLevel: null,
         subjectId: null,
         levelEnumMap: null,
@@ -131,6 +131,13 @@ export default {
     getList().then(res => {
       this.subjectFilter = res.data
     })
+    const id = this.$route.query.id
+    if (id && parseInt(id) !== 0) {
+      fetchQuestionDetail(id).then(res => {
+        this.form = res.data
+        this.formLoading = false
+      })
+    }
   },
   methods: {
     levelChange() {
@@ -158,11 +165,13 @@ export default {
     submitForm() {
       this.form.questionObject.correct = this.form.correct
       create(this.form).then(() => {
-        this.$notify({
-          title: 'Success',
-          message: 'Created Successfully',
-          type: 'success',
-          duration: 2000
+        this.$message.success('添加成功')
+        this.$store.dispatch('tagsView/delView', this.$route).then(() => {
+          this.$nextTick(() => {
+            this.$router.replace({
+              path: '/project-mange/t-question'
+            })
+          })
         })
       })
     },
@@ -171,7 +180,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: null,
-        questionType: 1,
+        questionType: 2,
         gradeLevel: null,
         subjectId: null,
         title: '',

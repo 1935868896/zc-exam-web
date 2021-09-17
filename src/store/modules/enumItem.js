@@ -19,7 +19,12 @@ const state = {
       ]),
       editUrlEnum: new Map([
         [1, '/project-mange/single-choice'], [2, '/project-mange/multiple-choice'], [3, '/project-mange/true-false']
-      ])
+      ]),
+      answer: {
+        doRightTag: [{ key: true, value: 'success' }, { key: false, value: 'danger' }, { key: null, value: 'warning' }],
+        doRightEnum: [{ key: true, value: '正确' }, { key: false, value: '错误' }, { key: null, value: '待批改' }],
+        doCompletedTag: [{ key: false, value: 'info' }, { key: true, value: 'success' }]
+      }
 
       // editUrlEnum: [{ key: 1, value: '/exam/question/edit/singleChoice', name: '单选题' },
       //   { key: 2, value: '/exam/question/edit/multipleChoice', name: '多选题' },

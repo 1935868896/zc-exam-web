@@ -28,7 +28,12 @@ const tableRouter = {
       name: 't-exam-paper',
       meta: { title: '试卷管理' }
     },
-
+    {
+      path: 'do-exam-paper',
+      component: () => import('@/views/project-mange/student/exam/paper/do'),
+      name: 'do-exam-paper',
+      meta: { title: '做卷子' }
+    },
     {
       path: 'single-choice',
       hidden: true,
