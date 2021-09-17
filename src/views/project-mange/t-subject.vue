@@ -81,19 +81,10 @@
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="年级" min-width="150px">
-        <template slot-scope="{ row }">
-          <span>{{ row.level }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column label="年级名" min-width="150px">
         <template slot-scope="{ row }">
           <span>{{ row.levelName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="排序" min-width="150px">
-        <template slot-scope="{ row }">
-          <span>{{ row.itemOrder }}</span>
         </template>
       </el-table-column>
 
@@ -143,15 +134,13 @@
         <el-form-item label="学科名称">
           <el-input v-model="temp.name" style="width: 220px;" />
         </el-form-item>
-        <el-form-item label="年级">
-          <el-input v-model="temp.level" style="width: 220px;" />
+
+        <el-form-item label="年级：" prop="level" required>
+          <el-select v-model="temp.level" placeholder="年级" clearable @change="levelChange">
+            <el-option v-for="[k,v] in levelEnumMap" :key="k" :value="k" :label="v" />
+          </el-select>
         </el-form-item>
-        <el-form-item label="年级名">
-          <el-input v-model="temp.levelName" style="width: 220px;" />
-        </el-form-item>
-        <el-form-item label="排序">
-          <el-input v-model="temp.itemOrder" style="width: 220px;" />
-        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false"> Cancel </el-button>
@@ -195,6 +184,7 @@ import {
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import store from '@/store'
 
 export default {
   name: 'ComplexTable',
@@ -217,6 +207,7 @@ export default {
       list: null,
       total: 0,
       listLoading: true,
+      levelEnumMap: null,
       listQuery: {
         page: 1,
         limit: 10,
@@ -273,6 +264,8 @@ export default {
     }
   },
   created() {
+    this.levelEnumMap = store.state.enumItem.user.levelEnum
+
     this.getList()
   },
   methods: {
@@ -352,16 +345,11 @@ export default {
     createData() {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          this.temp.author = 'vue-element-admin'
+          this.temp.levelName = this.levelEnumMap.get(this.temp.level)
           create(this.temp).then(() => {
-            this.list.unshift(this.temp)
             this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: 'Created Successfully',
-              type: 'success',
-              duration: 2000
-            })
+            this.$message.success('创建成功')
+            this.getList()
           })
         }
       })
@@ -380,16 +368,13 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
           tempData.timestamp = +new Date(tempData.timestamp)
+          tempData.levelName = this.levelEnumMap.get(tempData.level)
           update(tempData).then(() => {
             const index = this.list.findIndex((v) => v.id === this.temp.id)
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: 'Update Successfully',
-              type: 'success',
-              duration: 2000
-            })
+            this.$message.success('修改成功')
+            this.getList()
           })
         }
       })
