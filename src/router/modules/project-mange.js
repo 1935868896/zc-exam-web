@@ -35,6 +35,24 @@ const tableRouter = {
       meta: { title: '做卷子' }
     },
     {
+      path: 'read-exam-paper',
+      component: () => import('@/views/project-mange/student/exam/paper/read'),
+      name: 'read-exam-paper',
+      meta: { title: '读卷子' }
+    },
+    {
+      path: 'exam-paper-record',
+      component: () => import('@/views/project-mange/student/exam/record'),
+      name: 'exam-paper-record',
+      meta: { title: '试卷记录' }
+    },
+    {
+      path: 'exam-question-error',
+      component: () => import('@/views/project-mange/student/exam/question-error'),
+      name: 'exam-question-error',
+      meta: { title: '错题本' }
+    },
+    {
       path: 'single-choice',
       hidden: true,
       component: () => import('@/views/project-mange/question/single-choice'),

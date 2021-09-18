@@ -21,8 +21,12 @@ const state = {
         [1, '/project-mange/single-choice'], [2, '/project-mange/multiple-choice'], [3, '/project-mange/true-false']
       ]),
       answer: {
-        doRightTag: [{ key: true, value: 'success' }, { key: false, value: 'danger' }, { key: null, value: 'warning' }],
-        doRightEnum: [{ key: true, value: '正确' }, { key: false, value: '错误' }, { key: null, value: '待批改' }],
+        doRightTag: new Map([
+          [true, 'success'], [false, 'danger'], [null, 'warning']
+        ]),
+        doRightEnum: new Map([
+          [true, '正确'], [false, '错误'], [null, '待批改']
+        ]),
         doCompletedTag: [{ key: false, value: 'info' }, { key: true, value: 'success' }]
       }
 

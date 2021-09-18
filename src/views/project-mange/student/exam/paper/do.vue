@@ -64,6 +64,7 @@
 
 import { formatSeconds } from '@/utils'
 import QuestionEdit from '../components/QuestionEdit'
+import { answerAnalysis } from '@/api/project-mange/exam-paper-answer'
 import { fetchPaperDetail } from '@/api/project-mange/t-exam-paper'
 import store from '@/store'
 
@@ -152,6 +153,17 @@ export default {
       _this.formLoading = true
       console.log('answer')
       console.log(this.answer)
+      answerAnalysis(this.answer).then(res => {
+        _this.formLoading = false
+        _this.$alert('试卷得分：' + res.data.score + '分', '考试结果', {
+          confirmButtonText: '返回考试记录',
+          callback: action => {
+            _this.$router.push('/record/index')
+          }
+        })
+      }).catch(e => {
+        _this.formLoading = false
+      })
     //   examPaperAnswerApi.answerSubmit(this.answer).then(re => {
     //     if (re.code === 1) {
     //       _this.$alert('试卷得分：' + re.response + '分', '考试结果', {
