@@ -9,10 +9,10 @@
           <el-table-column prop="createTime" label="做题时间" width="170" />
           <el-table-column align="right" width="70">
             <template slot-scope="{row}">
-              <router-link v-if="row.status === 1 " target="_blank" :to="{path:'/edit',query:{id:row.id}}">
+              <router-link v-if="row.status === 1 " :to="{path:'/edit',query:{id:row.id}}">
                 <el-button type="text" size="small">批改</el-button>
               </router-link>
-              <router-link v-if="row.status === 2 " target="_blank" :to="{path:'/read',query:{id:row.id}}">
+              <router-link v-if="row.status === 2 " :to="{path:'/project-mange/read-exam-paper',query:{id:row.id}}">
                 <el-button type="text" size="small">查看试卷</el-button>
               </router-link>
             </template>
@@ -99,7 +99,11 @@ export default {
     },
     itemSelect(row, column, event) {
       this.selectItem = row
+    },
+    handleRead(row) {
+      this.$router.push({ path: '/project-mange/read-exam-paper', query: { id: row.id }})
     }
+
     // statusTagFormatter(status) {
     //   return this.enumFormat(this.statusTag, status)
     // },

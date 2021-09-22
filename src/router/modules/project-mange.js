@@ -31,12 +31,14 @@ const tableRouter = {
     {
       path: 'do-exam-paper',
       component: () => import('@/views/project-mange/student/exam/paper/do'),
+      hidden: true,
       name: 'do-exam-paper',
       meta: { title: '做卷子' }
     },
     {
       path: 'read-exam-paper',
       component: () => import('@/views/project-mange/student/exam/paper/read'),
+      hidden: true,
       name: 'read-exam-paper',
       meta: { title: '读卷子' }
     },

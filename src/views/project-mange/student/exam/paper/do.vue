@@ -85,10 +85,9 @@ export default {
   },
 
   created() {
-    const id = 2
-    // this.$route.query.id
+    const id = this.$route.query.id
     const _this = this
-    this.doCompletedTag = store.state.enumItem.exam.question.answer.doCompletedTag
+    this.doCompletedTagMap = store.state.enumItem.exam.question.answer.doCompletedTag
 
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
@@ -125,12 +124,7 @@ export default {
       }, 1000)
     },
     questionCompleted(completed) {
-      for (const item of this.doCompletedTag) {
-        if (item.completed === completed) {
-          return item.value
-        }
-      }
-      return null
+      return this.doCompletedTagMap.get(completed)
     },
 
     goAnchor(selector) {
@@ -158,27 +152,18 @@ export default {
         _this.$alert('试卷得分：' + res.data.score + '分', '考试结果', {
           confirmButtonText: '返回考试记录',
           callback: action => {
-            _this.$router.push('/record/index')
+            this.$store.dispatch('tagsView/delView', this.$route).then(() => {
+              this.$nextTick(() => {
+                this.$router.replace({
+                  path: '/project-mange/exam-paper-record'
+                })
+              })
+            })
           }
         })
       }).catch(e => {
         _this.formLoading = false
       })
-    //   examPaperAnswerApi.answerSubmit(this.answer).then(re => {
-    //     if (re.code === 1) {
-    //       _this.$alert('试卷得分：' + re.response + '分', '考试结果', {
-    //         confirmButtonText: '返回考试记录',
-    //         callback: action => {
-    //           _this.$router.push('/record/index')
-    //         }
-    //       })
-    //     } else {
-    //       _this.$message.error(re.message)
-    //     }
-    //     _this.formLoading = false
-    //   }).catch(e => {
-    //     _this.formLoading = false
-    //   })
     }
   }
 }

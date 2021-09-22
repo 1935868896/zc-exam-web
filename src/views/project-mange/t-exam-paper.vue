@@ -120,8 +120,11 @@
       >
         <template slot-scope="{ row, $index }">
           <!-- 操作1：简单的按钮模式 -->
+          <el-button type="primary" size="mini" @click="handleDoPaper(row)">
+            做题
+          </el-button>
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
+            编辑
           </el-button>
           <el-button
             v-if="row.status != 'deleted'"
@@ -129,7 +132,7 @@
             type="danger"
             @click="handleDelete(row, $index)"
           >
-            Delete
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -403,6 +406,9 @@ export default {
           })
         }
       })
+    },
+    handleDoPaper(row) {
+      this.$router.push({ path: '/project-mange/do-exam-paper', query: { id: row.id }})
     },
     handleUpdate(row) {
       this.$router.push({ path: '/project-mange/paper-edit', query: { id: row.id }})

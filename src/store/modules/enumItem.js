@@ -27,7 +27,9 @@ const state = {
         doRightEnum: new Map([
           [true, '正确'], [false, '错误'], [null, '待批改']
         ]),
-        doCompletedTag: [{ key: false, value: 'info' }, { key: true, value: 'success' }]
+        doCompletedTag: new Map([
+          [true, 'success'], [false, 'info']
+        ])
       }
 
       // editUrlEnum: [{ key: 1, value: '/exam/question/edit/singleChoice', name: '单选题' },

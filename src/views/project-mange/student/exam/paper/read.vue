@@ -49,6 +49,7 @@
 import { formatSeconds } from '@/utils'
 import QuestionAnswerShow from '../components/QuestionAnswerShow'
 import { fetchReadPaper } from '@/api/project-mange/exam-paper-answer'
+import store from '@/store'
 export default {
   components: { QuestionAnswerShow },
   data() {
@@ -65,9 +66,9 @@ export default {
     }
   },
   created() {
-    // let id = this.$route.query.id
-    const id = 2
+    const id = this.$route.query.id
     const _this = this
+    this.doRightTagMap = store.state.enumItem.exam.question.answer.doRightTag
 
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
@@ -85,7 +86,7 @@ export default {
       return formatSeconds(theTime)
     },
     questionDoRightTag(status) {
-      return status
+      return this.doRightTagMap.get(status)
     },
     goAnchor(selector) {
       this.$el.querySelector(selector).scrollIntoView({ behavior: 'instant', block: 'center', inline: 'nearest' })
@@ -110,4 +111,23 @@ export default {
     padding-left: 25px;
     padding-right: 25px;
   }
+
+  .do-exam-title {
+  position: fixed;
+  width: 100%;
+  background: #fff6f6;
+  z-index: 999;
+  padding: 5px 0px;
+}
+
+.do-exam-title-hidden {
+  width: 100%;
+  visibility: hidden;
+  padding: 5px 0px;
+}
+
+.do-exam-title-tag {
+  margin-left: 5px;
+  cursor: pointer;
+}
 </style>
