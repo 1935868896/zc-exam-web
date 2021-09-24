@@ -120,14 +120,14 @@
       >
         <template slot-scope="{ row, $index }">
           <!-- 操作1：简单的按钮模式 -->
-          <el-button type="primary" size="mini" @click="handleDoPaper(row)">
+          <el-button v-if="checkPermission(['admin','student'])" type="primary" size="mini" @click="handleDoPaper(row)">
             做题
           </el-button>
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button v-if="checkPermission(['admin','teacher'])" type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
           <el-button
-            v-if="row.status != 'deleted'"
+            v-if="row.status != 'deleted'&& checkPermission(['admin','teacher'])"
             size="mini"
             type="danger"
             @click="handleDelete(row, $index)"
@@ -236,6 +236,7 @@ import {
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import checkPermission from '@/utils/permission' // 权限判断函数
 
 export default {
   name: 'ComplexTable',
@@ -317,6 +318,7 @@ export default {
     this.getList()
   },
   methods: {
+    checkPermission,
     // 方法: 增删改查:
     // getList() 查: 不带任何参数,根据分页查询数据
     // handleFilter() 查: 带参查询

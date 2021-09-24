@@ -14,45 +14,59 @@ const tableRouter = {
       path: 't-subject',
       component: () => import('@/views/project-mange/t-subject'),
       name: 't-subject',
-      meta: { title: '年级管理' }
+      meta: {
+        roles: ['admin'],
+        title: '年级管理' }
     },
     {
       path: 't-question',
       component: () => import('@/views/project-mange/t-question'),
       name: 't-question',
-      meta: { title: '问题管理' }
+      meta: {
+        roles: ['admin', 'teacher'],
+        title: '问题管理' }
     },
     {
       path: 't-exam-paper',
       component: () => import('@/views/project-mange/t-exam-paper'),
       name: 't-exam-paper',
-      meta: { title: '试卷管理' }
+      meta: {
+        roles: ['admin', 'teacher', 'student'],
+        title: '试卷管理' }
     },
     {
       path: 'do-exam-paper',
       component: () => import('@/views/project-mange/student/exam/paper/do'),
       hidden: true,
       name: 'do-exam-paper',
-      meta: { title: '做卷子' }
+      meta: {
+        roles: ['admin', 'student'],
+        title: '做卷子' }
     },
     {
       path: 'read-exam-paper',
       component: () => import('@/views/project-mange/student/exam/paper/read'),
       hidden: true,
       name: 'read-exam-paper',
-      meta: { title: '读卷子' }
+      meta: {
+        roles: ['admin', 'student'],
+        title: '读卷子' }
     },
     {
       path: 'exam-paper-record',
       component: () => import('@/views/project-mange/student/exam/record'),
       name: 'exam-paper-record',
-      meta: { title: '试卷记录' }
+      meta: {
+        roles: ['admin', 'student'],
+        title: '试卷记录' }
     },
     {
       path: 'exam-question-error',
       component: () => import('@/views/project-mange/student/exam/question-error'),
       name: 'exam-question-error',
-      meta: { title: '错题本' }
+      meta: {
+        roles: ['admin', 'student'],
+        title: '错题本' }
     },
     {
       path: 'single-choice',

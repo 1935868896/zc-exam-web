@@ -34,7 +34,7 @@
 <script>
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import QuestionAnswerShow from '../components/QuestionAnswerShow'
-import { fetchList, fetchDetail } from '@/api/project-mange/t-exam-paper-question-customer-answer'
+import { fetchErrorList, fetchDetail } from '@/api/project-mange/t-exam-paper-question-customer-answer'
 import store from '@/store'
 
 export default {
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     search() {
-      fetchList(this.queryParam).then(res => {
+      fetchErrorList(this.queryParam).then(res => {
         this.tableData = res.data.records
         this.total = res.data.total
         this.listLoading = false

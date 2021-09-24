@@ -12,6 +12,7 @@
             <el-button
               style="float: right; padding: 3px 0"
               type="text"
+              @click="handleCreate"
             >操作按钮</el-button>
           </div>
           <el-table
@@ -326,13 +327,20 @@ export default {
       } else {
         this.updateParam.roleId = this.checkRoleId
         this.updateParam.menuIds = this.$refs.tree.getCheckedKeys()
-        updateBatch(this.updateParam).then(() => {})
+        updateBatch(this.updateParam).then(() => {
+          this.$notify({
+            title: 'Success',
+            message: 'update Successfully',
+            type: 'success',
+            duration: 2000
+          })
+        })
       }
     },
     getMenuTree() {
       this.listLoading = true
       getTree().then((response) => {
-        this.tableData = response.data
+        this.tableData = response.data[0].children
         setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)

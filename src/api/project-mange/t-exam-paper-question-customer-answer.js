@@ -7,6 +7,14 @@ export function fetchList(query) {
     params: query
   })
 }
+export function fetchErrorList(query) {
+  return request({
+    url: '/project/tExamPaperQuestionCustomerAnswer/page/error',
+    method: 'get',
+    params: query
+  })
+}
+
 // 根据主键查询
 export function fetchDetail(id) {
   return request({
