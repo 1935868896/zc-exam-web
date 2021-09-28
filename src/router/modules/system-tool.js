@@ -7,6 +7,7 @@ const tableRouter = {
   name: 'system-tool',
   meta: {
     title: '系统工具',
+    roles: ['admin'],
     icon: 'sys-tools'
   },
   children: [

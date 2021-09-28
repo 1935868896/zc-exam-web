@@ -7,6 +7,7 @@ const tableRouter = {
   name: 'system-mange',
   meta: {
     title: '系统管理',
+    roles: ['admin'],
     icon: 'system'
   },
   children: [

@@ -6,7 +6,7 @@ const tableRouter = {
   redirect: 'project-mange',
   name: 'project-mange',
   meta: {
-    title: '项目管理',
+    title: '考试管理',
     icon: 'table'
   },
   children: [
@@ -41,7 +41,7 @@ const tableRouter = {
       name: 'do-exam-paper',
       meta: {
         roles: ['admin', 'student'],
-        title: '做卷子' }
+        title: '做试卷' }
     },
     {
       path: 'read-exam-paper',
@@ -50,7 +50,7 @@ const tableRouter = {
       name: 'read-exam-paper',
       meta: {
         roles: ['admin', 'student'],
-        title: '读卷子' }
+        title: '读试卷' }
     },
     {
       path: 'exam-paper-record',

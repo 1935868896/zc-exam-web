@@ -7,6 +7,7 @@ const tableRouter = {
   name: 'system-monitor',
   meta: {
     title: '系统监控',
+    roles: ['admin'],
     icon: 'codeConsole'
   },
   children: [

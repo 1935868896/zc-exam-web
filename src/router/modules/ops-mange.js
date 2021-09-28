@@ -7,6 +7,7 @@ const tableRouter = {
   name: 'ops-mange',
   meta: {
     title: '运维管理',
+    roles: ['admin'],
     icon: 'mnt'
   },
   children: [
